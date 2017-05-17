@@ -13,13 +13,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_keep_screen_on"
         android:checkable="true"
         android:checked="true"
-        android:showAsAction="never"
-        android:title="@string/keep_screen_on"/>
+        android:title="@string/keep_screen_on"
+        app:showAsAction="never"/>
 
 </menu>

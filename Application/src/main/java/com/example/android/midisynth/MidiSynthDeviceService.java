@@ -24,7 +24,6 @@ import com.example.android.common.midi.synth.SynthEngine;
 
 public class MidiSynthDeviceService extends MidiDeviceService {
 
-    private static final String TAG = MainActivity.TAG;
     private SynthEngine mSynthEngine = new SynthEngine();
     private boolean mSynthStarted = false;
 

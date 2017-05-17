@@ -16,18 +16,18 @@
 
 package com.example.android.midisynth;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.media.midi.MidiDevice.MidiConnection;
 import android.media.midi.MidiDeviceInfo;
 import android.media.midi.MidiManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.android.common.midi.MidiOutputPortConnectionSelector;
 import com.example.android.common.midi.MidiPortConnector;
@@ -36,18 +36,16 @@ import com.example.android.common.midi.MidiTools;
 /**
  * Simple synthesizer as a MIDI Device.
  */
-public class MainActivity extends Activity {
-    static final String TAG = "MidiSynthExample";
+public class MainActivity extends AppCompatActivity {
 
-    private MidiManager mMidiManager;
     private MidiOutputPortConnectionSelector mPortSelector;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        setActionBar((Toolbar) findViewById(R.id.toolbar));
-        ActionBar actionBar = getActionBar();
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
         }
@@ -86,12 +84,12 @@ public class MainActivity extends Activity {
 
     private void setupMidi() {
         // Setup MIDI
-        mMidiManager = (MidiManager) getSystemService(MIDI_SERVICE);
+        MidiManager midiManager = (MidiManager) getSystemService(MIDI_SERVICE);
 
-        MidiDeviceInfo synthInfo = MidiTools.findDevice(mMidiManager, "AndroidTest",
+        MidiDeviceInfo synthInfo = MidiTools.findDevice(midiManager, "AndroidTest",
                 "SynthExample");
         int portIndex = 0;
-        mPortSelector = new MidiOutputPortConnectionSelector(mMidiManager, this,
+        mPortSelector = new MidiOutputPortConnectionSelector(midiManager, this,
                 R.id.spinner_synth_sender, synthInfo, portIndex);
         mPortSelector.setConnectedListener(new MyPortsConnectedListener());
     }
